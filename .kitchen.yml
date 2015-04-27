@@ -11,5 +11,5 @@ platforms:
 
 suites:
   - name: default
-    run_list:
+    run_list: spree["spree:default"]
     attributes:

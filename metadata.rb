@@ -1,6 +1,6 @@
 name             'spree'
-maintainer       'YOUR_NAME'
-maintainer_email 'YOUR_EMAIL'
+maintainer       'Alex Naumchenko'
+maintainer_email 'alex@devloft.com'
 license          'All rights reserved'
 description      'Installs/Configures spree'
 long_description 'Installs/Configures spree'

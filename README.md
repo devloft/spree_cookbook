@@ -1,10 +1,12 @@
 # spree-cookbook
 
-TODO: Enter the cookbook description here.
+This cookbook installs Spree commerce, optional installs web proxy and database, using Kitchen CI, suites.
+
+Missing: Unittests
 
 ## Supported Platforms
 
-TODO: List your supported platforms.
+Supported platforms: RHEL, Ubuntu, Debian.
 
 ## Attributes
 
@@ -16,7 +18,7 @@ TODO: List your supported platforms.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['spree']['bacon']</tt></td>
+    <td><tt>['spree']['web_proxy']</tt></td>
     <td>Boolean</td>
     <td>whether to include bacon</td>
     <td><tt>true</tt></td>
@@ -39,4 +41,4 @@ Include `spree` in your node's `run_list`:
 
 ## License and Authors
 
-Author:: YOUR_NAME (<YOUR_EMAIL>)
+Author:: Alex Naumchenko (<alex@devloft.com>)
