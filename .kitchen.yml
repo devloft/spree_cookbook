@@ -17,10 +17,8 @@ suites:
   - name: spree_vm
     run_list:
      - recipe[rvm::system]
-     - recipe[rvm::user]
-     - recipe[rvm::user_install]
      - recipe[rvm::vagrant]
-  #  - recipe[spree::web_proxy]
+     - recipe[spree::web_proxy]
      - recipe[spree::app]
-    #- recipe[spree::database]
+     - recipe[spree::database]
     attributes:

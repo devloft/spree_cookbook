@@ -8,8 +8,8 @@ end
 rvm_ruby '2.1.5' do
   action :install
 end
-
-rvm_gem "rails" do
-  version '4.2.0'
-  action :install
-end
+# 
+# rvm_gem "rails" do
+#   version '4.2.0'
+#   action :install
+# end

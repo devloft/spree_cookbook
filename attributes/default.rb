@@ -1,12 +1,7 @@
 # Application settings.
 default['rvm']['user_rubies'] = [ "2.1.5"]
 default['rvm']['gpg']['keyserver'] = "hkp://keys.gnupg.net"
-default['rvm']['user_installs'] = [
-  { 'user'          => 'spree',
-    'default_ruby'  => '2.1.5',
-    'rubies'        => ['2.1.5']
-  }
-]
+
 # Point your IP to "myshop.domain.com"
 default['spree']['app'] = "myshop"
 default['spree']['domain'] = "#{node['spree']['app']}.domain.com"
