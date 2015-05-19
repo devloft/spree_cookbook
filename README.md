@@ -23,6 +23,72 @@ Supported platforms: RHEL, Ubuntu, Debian.
     <td>whether to include bacon</td>
     <td><tt>true</tt></td>
   </tr>
+  <tr>
+    <td><tt>['spree']['web_proxy']</tt></td>
+    <td>Boolean</td>
+    <td>whether to include bacon</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['spree']['web_proxy']</tt></td>
+    <td>Boolean</td>
+    <td>whether to include bacon</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['spree']['web_proxy']</tt></td>
+    <td>Boolean</td>
+    <td>whether to include bacon</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['spree']['web_proxy']</tt></td>
+    <td>Boolean</td>
+    <td>whether to include bacon</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['spree']['web_proxy']</tt></td>
+    <td>Boolean</td>
+    <td>whether to include bacon</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['spree']['web_proxy']</tt></td>
+    <td>Boolean</td>
+    <td>whether to include bacon</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['spree']['web_proxy']</tt></td>
+    <td>Boolean</td>
+    <td>whether to include bacon</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['spree']['web_proxy']</tt></td>
+    <td>Boolean</td>
+    <td>whether to include bacon</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['spree']['web_proxy']</tt></td>
+    <td>Boolean</td>
+    <td>whether to include bacon</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['spree']['web_proxy']</tt></td>
+    <td>Boolean</td>
+    <td>whether to include bacon</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['spree']['web_proxy']</tt></td>
+    <td>Boolean</td>
+    <td>whether to include bacon</td>
+    <td><tt>true</tt></td>
+  </tr>
 </table>
 
 ## Usage
@@ -38,7 +104,6 @@ Include `spree` in your node's `run_list`:
   ]
 }
 ```
-
 ## License and Authors
 
-Author:: Alex Naumchenko (<alex@devloft.com>)
+Author:: Alex Naumchenko (<alex@devloft.com>) @ Devloft Solutions Inc.
