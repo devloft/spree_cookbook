@@ -13,7 +13,6 @@ rvm_default_ruby "ruby-2.1.5"
 
 rvm_shell "gem install rails" do
   code %Q{gem install rails --no-rdoc --no-ri -v 4.2.1}
-  timeout 36000
   not_if 'gem list | grep rails'
 end
 

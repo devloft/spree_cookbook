@@ -1,14 +1,14 @@
 # spree-cookbook
 
-This cookbook installs Spree commerce, and other needed services  as web proxy and database, automated with "kitchen-chef".
+This cookbook installs env for Rails app and Spree Commerce, and other needed services as web proxy and database, automated with Kitchen Chef.
 
-Missing: Unittests
+Missing: Tests, SSL, AWS RDS.
 
 ## Supported Platforms
 
 Supported platforms: RHEL
 
-## Attributes
+## Default attributes
 
 <table>
   <tr>
@@ -18,10 +18,22 @@ Supported platforms: RHEL
     <th>Default</th>
   </tr>
   <tr>
+    <td><tt>['spree']['domain']</tt></td>
+    <td>String</td>
+    <td>Your brand domain</td>
+    <td><tt>mybrand.com</tt></td>
+  </tr>
+  <tr>
     <td><tt>['spree']['app']</tt></td>
     <td>String</td>
     <td>Name of your Spree Shop</td>
-    <td><tt>shop</tt></td>
+    <td><tt>spreeshop</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['spree']['vm_hostname']</tt></td>
+    <td>String</td>
+    <td>VM Hostname</td>
+    <td><tt>spreeshop.mybrand.com</tt></td>
   </tr>
   <tr>
     <td><tt>['spree']['web_proxy']</tt></td>
@@ -30,42 +42,56 @@ Supported platforms: RHEL
     <td><tt>true</tt></td>
   </tr>
   <tr>
-    <td><tt>['spree']['https_only']</tt></td>
+    <td><tt>['spree']['https']</tt></td>
     <td>Boolean</td>
-    <td>User https only config for web_proxy</td>
+    <td>SSL Certifates currently not supported!</td>
     <td><tt>false</tt></td>
   </tr>
-  <tr>
-    <td><tt>['spree']['domain']</tt></td>
-    <td>String</td>
-    <td>Your brand domain</td>
-    <td><tt>mybrand.com</tt></td>
-  </tr>
+
   <tr>
     <td><tt>['spree']['root_path']</tt></td>
     <td>String</td>
-    <td>Your root_path for your Rails app</td>
-    <td><tt>"/opt/spree"</tt></td>
+    <td>Your root_path for Rails</td>
+    <td><tt>/opt/spree/</tt></td>
   </tr>
   <tr>
     <td><tt>['spree']['user']</tt></td>
     <td>String</td>
-    <td>Your Rails app user</td>
+    <td>User running</td>
     <td><tt>spree</tt></td>
   </tr>
   <tr>
     <td><tt>['spree']['group']</tt></td>
     <td>String</td>
-    <td>Your Rails app group.</td>
+    <td>Rails app group</td>
     <td><tt>spree</tt></td>
   </tr>
   <tr>
     <td><tt>['spree']['rails_env']</tt></td>
     <td>String</td>
-    <td>Your Rails environment.</td>
+    <td>Rails environment:</td>
     <td><tt>development</tt></td>
   </tr>
 </table>
+
+# .kitchen.yml
+```
+---
+driver:
+  name: vagrant
+  vm_hostname: spreeshop.mybrand.com
+  driver_config:
+  network:
+  - ["private_network", {ip:'10.0.100.2'}]
+  customize:
+      cpus: 2
+      memory: 4096
+```
+
+Spree app should be available at <b>spreeshop.mybrand.com</b>
+
+Point your DNS or hosts file over: "10.0.100.2 spreeshop.mybrand.com"
+
 
 ## Usage
 

@@ -13,7 +13,7 @@ end
 template "/#{node['spree']['root_path']}/#{node['spree']['app']}/shared/database_include.yml" do
   owner "gemini"
   group "gemini"
-  source "database_include.yml.erb"
+  source "database.yml.erb"
   mode "0600"
   variables(:hostname => master,
     :database_name => "fbfcats" + "_" + node[:rails_env],
@@ -27,5 +27,5 @@ rvm_shell "migrate_rails_database" do
   user        node['spree']['user']
   group       node['spree']['group']
   cwd "/#{node['spree']['root_path']}/#{node['spree']['app']}"
-  code        %{rake RAILS_ENV=production db:migrate}
+  code        %{rake RAILS_ENV=#{node['spree']['rails_env'] db:migrate}
 end

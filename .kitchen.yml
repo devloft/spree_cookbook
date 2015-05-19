@@ -1,10 +1,10 @@
 ---
 driver:
   name: vagrant
-  vm_hostname: shop.mybrand.com
+  vm_hostname: spreeshop.mybrand.com
   driver_config:
   network:
-  - ["private_network", {ip: "33.33.33.10"}]
+  - ["private_network", {ip: '10.0.100.2'}]
   customize:
       cpus: 2
       memory: 4096
@@ -19,7 +19,6 @@ suites:
   - name: spree_vm
     run_list:
      - recipe[spree::default]
-     - recipe[rvm::vagrant]
     attributes:
       resolvconf:
       nameserver: '8.8.8.8'
