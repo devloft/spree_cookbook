@@ -1,4 +1,4 @@
-unicorn_config "/etc/unicorn/#{app['id']}.rb" do
+unicorn_config "/opt/#{node['spree']['root_path']}/#{node['spree']['app']}/config/unicorn.rb" do
   listen({ node[:unicorn][:port] => node[:unicorn][:options] })
   working_directory ::File.join(app['deploy_to'], 'current')
   worker_timeout node[:unicorn][:worker_timeout]

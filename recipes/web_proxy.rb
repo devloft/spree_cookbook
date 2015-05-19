@@ -1,14 +1,13 @@
 include_recipe 'yum-epel'
 
+package 'nginx'
 
-package "nginx"
-
-service "nginx" do
+service 'nginx' do
   supports [:status, :restart]
   action :start
 end
 
-template "/etc/nginx/conf.d/#{node['app']}.conf" do
+template "/etc/nginx/conf.d/#{node['spree']['app']}.conf" do
   source "nginx-unicorn.conf.erb"
   mode 0644
   notifies :restart, "service[nginx]", :delayed

@@ -21,7 +21,7 @@ rvm_gem "spree_cmd" do
    action :install
 end
 
-rvm_shell "Creating Spree shop" do
+rvm_shell "Creating new Rails App" do
   code %Q{rails _4.2.1_ new #{node['spree']['app']} --skip-bundle}
   timeout 36000
   cwd node['spree']['root_path']
@@ -29,7 +29,7 @@ rvm_shell "Creating Spree shop" do
   group node['spree']['group']
 end
 
-rvm_shell "Creating Spree shop" do
+rvm_shell "Adding Spree to Rails App" do
   code %Q{spree install --auto-accept}
   timeout 36000
   cwd node['spree']['root_path']
@@ -37,7 +37,7 @@ rvm_shell "Creating Spree shop" do
   group node['spree']['group']
 end
 
-rvm_shell "Creating Spree shop" do
+rvm_shell "Running Bundle" do
   code %Q{bundle install}
   timeout 36000
   cwd "/#{node['spree']['root_path']}/#{node['spree']['app']}"
@@ -45,54 +45,13 @@ rvm_shell "Creating Spree shop" do
   group node['spree']['group']
 end
 
-rvm_shell "Creating Spree shop" do
-  code %Q{bundle install}
+rvm_shell "Creating Spree admin user..." do
+  code %{rake spree_auth:admin:create}
   timeout 36000
   cwd "/#{node['spree']['root_path']}/#{node['spree']['app']}"
   user node['spree']['user']
   group node['spree']['group']
 end
-
-#
-# execute 'bundle install' do
-#   cwd "/#{node['spree']['root_path']}/#{node['spree']['app']}"
-#   command <-EOC
-#     spree install --auto-accept
-#   EOC
-#   user node['spree']['user']
-# end
-
-# template "/opt/apps/ms/#{app_name}/shared/database_include.yml" do
-#   owner "gemini"
-#   group "gemini"
-#   source "database_include.yml.erb"
-#   mode "0600"
-#   variables(:hostname => master,
-#     :database_name => "fbfcats" + "_" + node[:rails_env],
-#     :user => 'fbfcats',
-#     :password => 'mittens',
-#     :rails_env => node[:rails_env])
-# end
-
-# template "/opt/apps/ms/#{app_name}/shared/database_include.yml" do
-#   owner "gemini"
-#   group "gemini"
-#   source "database_include.yml.erb"
-#   mode "0600"
-#   variables(:hostname => master,
-#     :database_name => "fbfcats" + "_" + node[:rails_env],
-#     :user => 'fbfcats',
-#     :password => 'mittens',
-#     :rails_env => node[:rails_env])
-# end
-
-# rvm_shell "Creating Spree admin user..." do
-#   code %{rake spree_auth:admin:create}
-#   timeout 36000
-#   cwd "/#{node['spree']['root_path']}/#{node['spree']['app']}"
-#   user node['spree']['user']
-#   group node['spree']['group']
-# end
 
 # rvm_shell "migrate_rails_database" do
 #   ruby_string "ruby-2.1.5"

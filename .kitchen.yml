@@ -1,13 +1,13 @@
 ---
 driver:
   name: vagrant
-  vm_hostname: spree.myspreeshop.com
+  vm_hostname: shop.mybrand.com
   driver_config:
   network:
   - ["private_network", {ip: "33.33.33.10"}]
   customize:
       cpus: 2
-      memory: 1024
+      memory: 4096
 
 provisioner:
   name: chef_solo

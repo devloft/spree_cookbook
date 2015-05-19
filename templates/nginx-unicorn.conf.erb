@@ -1,16 +1,16 @@
 upstream unicorn {
-  server unix:/tmp/unicorn.<%= node['spree']['app'] %>.sock fail_timeout=0;
+  server unix:/tmp/unicorn.<%= node['spree'][:app] %>.sock fail_timeout=0;
 }
 
 server {
-  server_name www.<%= node['spree']['app'] %>.com;
-  return 301 $scheme://<%= node['spree']['app'] %>.com$request_uri;
+  server_name www.<%= node['spree']['app'] %>.<%= node['spree']['domain'] %>;
+  return 301 $scheme://<%= node['spree']['app'] %>.<%= node['spree']['domain'] %>$request_uri;
 }
 
 server {
   listen 80 default deferred;
-  server_name <%= node['spree']['app'] %>.com;
-  root /var/www/<%= node['spree']['app'] %>/current/public;
+  server_name <%= node['spree']['app'] %>.<%= node['spree']['domain'] %>;
+  root <%= node['spree']['root_path'] %>/<%= node['spree']['app'] %>/public;
 
   location ^~ /assets/ {
     gzip_static on;
