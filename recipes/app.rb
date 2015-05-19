@@ -32,7 +32,7 @@ end
 rvm_shell "Adding Spree to Rails App" do
   code %Q{spree install --auto-accept}
   timeout 36000
-  cwd node['spree']['root_path']
+  cwd "/#{node['spree']['root_path']}/#{node['spree']['app']}"
   user node['spree']['user']
   group node['spree']['group']
 end
