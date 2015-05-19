@@ -1,15 +1,107 @@
 #Here we'll create fresh rails app with Gemfile and add spree modules.
-include_recipe "spree::user"
+include_recipe "rvm::system"
 
-package ['ImageMagick']  do
-  action :upgrade
+package %w(nodejs mysql-devel ImageMagick)  do
+  action :install
 end
 
 rvm_ruby '2.1.5' do
   action :install
 end
-# 
-# rvm_gem "rails" do
-#   version '4.2.0'
-#   action :install
+
+rvm_default_ruby "ruby-2.1.5"
+
+rvm_shell "gem install rails" do
+  code %Q{gem install rails --no-rdoc --no-ri -v 4.2.1}
+  timeout 36000
+  not_if 'gem list | grep rails'
+end
+
+rvm_gem "spree_cmd" do
+   action :install
+end
+
+rvm_shell "Creating Spree shop" do
+  code %Q{rails _4.2.1_ new #{node['spree']['app']} --skip-bundle}
+  timeout 36000
+  cwd node['spree']['root_path']
+  user node['spree']['user']
+  group node['spree']['group']
+end
+
+rvm_shell "Creating Spree shop" do
+  code %Q{spree install --auto-accept}
+  timeout 36000
+  cwd node['spree']['root_path']
+  user node['spree']['user']
+  group node['spree']['group']
+end
+
+rvm_shell "Creating Spree shop" do
+  code %Q{bundle install}
+  timeout 36000
+  cwd "/#{node['spree']['root_path']}/#{node['spree']['app']}"
+  user node['spree']['user']
+  group node['spree']['group']
+end
+
+rvm_shell "Creating Spree shop" do
+  code %Q{bundle install}
+  timeout 36000
+  cwd "/#{node['spree']['root_path']}/#{node['spree']['app']}"
+  user node['spree']['user']
+  group node['spree']['group']
+end
+
+#
+# execute 'bundle install' do
+#   cwd "/#{node['spree']['root_path']}/#{node['spree']['app']}"
+#   command <-EOC
+#     spree install --auto-accept
+#   EOC
+#   user node['spree']['user']
+# end
+
+# template "/opt/apps/ms/#{app_name}/shared/database_include.yml" do
+#   owner "gemini"
+#   group "gemini"
+#   source "database_include.yml.erb"
+#   mode "0600"
+#   variables(:hostname => master,
+#     :database_name => "fbfcats" + "_" + node[:rails_env],
+#     :user => 'fbfcats',
+#     :password => 'mittens',
+#     :rails_env => node[:rails_env])
+# end
+
+# template "/opt/apps/ms/#{app_name}/shared/database_include.yml" do
+#   owner "gemini"
+#   group "gemini"
+#   source "database_include.yml.erb"
+#   mode "0600"
+#   variables(:hostname => master,
+#     :database_name => "fbfcats" + "_" + node[:rails_env],
+#     :user => 'fbfcats',
+#     :password => 'mittens',
+#     :rails_env => node[:rails_env])
+# end
+
+# rvm_shell "Creating Spree admin user..." do
+#   code %{rake spree_auth:admin:create}
+#   timeout 36000
+#   cwd "/#{node['spree']['root_path']}/#{node['spree']['app']}"
+#   user node['spree']['user']
+#   group node['spree']['group']
+# end
+
+# rvm_shell "migrate_rails_database" do
+#   ruby_string "ruby-2.1.5"
+#   user        node['spree']['user']
+#   group       node['spree']['group']
+#   code        %{rake RAILS_ENV=production db:migrate}
+# end
+
+# execute 'install mysql2 gem' do
+#   command 'gem install mysql2'
+#   not_if 'gem list | grep mysql2'
 # end

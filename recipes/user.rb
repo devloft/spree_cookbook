@@ -12,7 +12,7 @@ user node[:spree][:user] do
   action :create
 end
 
-directory node[:spree][:rootpath] do
+directory node[:spree][:root_path] do
   action :create
   owner node[:spree][:user]
   group node[:spree][:group]

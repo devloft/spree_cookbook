@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'berkshelf'
-
 # Uncomment these lines if you want to live on the Edge:
 #
 # group :development do

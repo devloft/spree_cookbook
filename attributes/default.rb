@@ -3,20 +3,23 @@ default['rvm']['user_rubies'] = [ "2.1.5"]
 default['rvm']['gpg']['keyserver'] = "hkp://keys.gnupg.net"
 
 # Point your IP to "myshop.domain.com"
-default['spree']['app'] = "myshop"
+default['spree']['app'] = "spreeshop"
 default['spree']['domain'] = "#{node['spree']['app']}.domain.com"
 default['spree']['https_only'] = false
 
-default['spree']['rootpath'] = "/opt/spree"
+
+default['spree']['root_path'] = "/opt/spree"
 default['spree']['user'] = "spree"
+default['user']['name'] = "spree"
+
+default['group'] = "spree"
 default['spree']['group'] = "spree"
 
-# Database setup
-default['postgresql']['enable_pgdg_yum'] = true
-default['postgresql']['version'] = "9.2"
-default['postgresql']['dir'] = "/var/lib/pgsql/data"
-default['postgresql']['client']['packages'] = ["postgresql92", "postgresql92-devel"]
-default['postgresql']['server']['packages'] = ["postgresql92-server"]
-default['postgresql']['server']['service_name'] = "postgresql-9.2"
-default['postgresql']['contrib']['packages'] = ["postgresql92-contrib"]
-default['postgresql']['password']['postgres'] = "md5d4dd6397cf55a4507874c3864f092a8c"
+
+default[:unicorn][:worker_timeout] = 60
+default[:unicorn][:preload_app] = false
+default[:unicorn][:worker_processes] = [node[:cpu][:total].to_i * 4, 8].min
+default[:unicorn][:preload_app] = false
+default[:unicorn][:before_fork] = 'sleep 1'
+default[:unicorn][:port] = '8080'
+default[:unicorn][:options] = { :tcp_nodelay => true, :backlog => 100 }

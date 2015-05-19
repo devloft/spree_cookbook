@@ -1,14 +1,16 @@
 ---
 driver:
   name: vagrant
-  vm_hostname: spree-app-001.myspreeshop.com
+  vm_hostname: spree.myspreeshop.com
   driver_config:
   network:
   - ["private_network", {ip: "33.33.33.10"}]
+  customize:
+      cpus: 2
+      memory: 1024
 
 provisioner:
   name: chef_solo
-  data_bags_path: "test/fixtures/data_bags"
 
 platforms:
   - name: centos-6.4
@@ -16,9 +18,8 @@ platforms:
 suites:
   - name: spree_vm
     run_list:
-     - recipe[rvm::system]
+     - recipe[spree::default]
      - recipe[rvm::vagrant]
-     - recipe[spree::web_proxy]
-     - recipe[spree::app]
-     - recipe[spree::database]
     attributes:
+      resolvconf:
+      nameserver: '8.8.8.8'
