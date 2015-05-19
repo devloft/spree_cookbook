@@ -52,15 +52,3 @@ rvm_shell "Creating Spree admin user..." do
   user node['spree']['user']
   group node['spree']['group']
 end
-
-# rvm_shell "migrate_rails_database" do
-#   ruby_string "ruby-2.1.5"
-#   user        node['spree']['user']
-#   group       node['spree']['group']
-#   code        %{rake RAILS_ENV=production db:migrate}
-# end
-
-# execute 'install mysql2 gem' do
-#   command 'gem install mysql2'
-#   not_if 'gem list | grep mysql2'
-# end
