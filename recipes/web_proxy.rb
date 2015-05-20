@@ -7,7 +7,7 @@ service 'nginx' do
   action :start
 end
 
-template "/etc/nginx/conf.d/#{node['spree']['app']}.conf" do
+template "/etc/nginx/conf.d/#{node['spree']['app']}.#{node['spree']['domain']}.conf" do
   source "nginx-unicorn.conf.erb"
   mode 0644
   notifies :restart, "service[nginx]", :delayed

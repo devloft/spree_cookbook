@@ -1,9 +1,9 @@
-<%= @rails_env %>:
-  host: <%= @hostname %>
+<%= node['spree']['rails_env'] %>:
+  socket: <%= node['spree']['db_socket'] %>
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: <%= @database_name %>
+  database: <%= node['spree']['db_name'] %>
   pool: 5
-  username: <%= @user %>
-  password: <%= @password %>
+  username: <%= node['spree']['db_user'] %>
+  password: <%= node['spree']['db_pass'] %>

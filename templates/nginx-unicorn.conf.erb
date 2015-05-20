@@ -1,5 +1,5 @@
 upstream unicorn {
-  server unix:/tmp/unicorn.<%= node['spree'][:app] %>.sock fail_timeout=0;
+  server <%= node['spree']['app'] %>.<%= node['spree']['domain'] %>:8080;
 }
 
 server {
