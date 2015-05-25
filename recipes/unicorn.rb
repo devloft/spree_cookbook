@@ -9,10 +9,11 @@ unicorn_config "#{node['spree']['root_path']}/#{node['spree']['app']}/config/uni
   before_fork node['unicorn']['before_fork']
 end
 
-bash 'Running Unicorn' do
-  user 'root'
-  cwd node['spree']['app_path']
-  code <<-EOH
-    unicorn_rails -E #{node['spree']['rails_env']} -c config/unicorn.rb -D
-  EOH
-end
+# bash 'Running Unicorn' do
+#   user 'root'
+#   cwd node['spree']['app_path']
+#   code <<-EOH
+#     unicorn_rails -E #{node['spree']['rails_env']} -c config/unicorn.rb -D
+#   EOH
+#   not_if { ::File.exists?("#{node['spree']['app_path']}/Gemfile") }
+# end

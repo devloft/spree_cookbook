@@ -5,13 +5,13 @@ package %w(nodejs mysql-devel ImageMagick)  do
   action :install
 end
 
-rvm_ruby '2.1.5' do
+rvm_ruby node['rvm']['user_rubies'] do
   action :install
 end
 
-rvm_default_ruby "ruby-2.1.5"
+rvm_default_ruby node['rvm']['user_rubies']
 
-rvm_shell "gem install rails" do
+rvm_shell "install rails" do
   code %Q{gem install rails --no-rdoc --no-ri -v 4.2.1}
   timeout 36000
   not_if 'gem list | grep rails'
@@ -19,24 +19,22 @@ end
 
 rvm_gem "spree_cmd" do
    action :install
-   not_if 'gem list | grep spree_cmd'
 end
 
-rvm_shell "Creating new Rails App" do
-  code %Q{rails _4.2.1_ new #{node['spree']['app']} --skip-bundle}
+rvm_shell "Creating new Rails App, rails_url is empty!" do
+  code %Q{rails _4.2.1_ new #{node['spree']['app']} --skip-bundle -d #{node['spree']['db_type']}}
   timeout 36000
   cwd node['spree']['root_path']
   user node['spree']['user']
   group node['spree']['group']
-  not_if {node['spree']['app_path']}
+  not_if { ::File.exists?("#{node['spree']['app_path']}/Gemfile") }
 end
 
-rvm_shell "Adding spree to Rails app" do
-  code %Q{spree install --auto-accept}
+rvm_shell "Adding Spree to Gemfile" do
+  code 'spree install --A --skip-install-data'
   timeout 36000
   cwd "#{node['spree']['app_path']}"
-  user node['spree']['user']
-  group node['spree']['group']
+  action :nothing
 end
 
 rvm_shell "Runing bundle install" do
@@ -50,7 +48,6 @@ end
 
 ruby_block "Create devise_key " do
     block do
-        #tricky way to load this Chef::Mixin::ShellOut utilities
         Chef::Resource::RubyBlock.send(:include, Chef::Mixin::ShellOut)
         app_path = node['spree']['app_path']
         command = "cd #{app_path} && bundle exec rake secret"

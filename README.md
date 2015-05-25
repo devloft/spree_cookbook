@@ -1,15 +1,31 @@
 # spree-cookbook
 
-This cookbook installs env for Rails app and Spree Commerce, and other needed services as web proxy and database, automated with Kitchen Chef.
+[![Dependency Status](https://gemnasium.com/devloft/spree.svg)](https://gemnasium.com/devloft/spree)
 
-Missing: Tests, SSL, AWS RDS.
+
+Description
+===========
+Spree cookbook installs and configures Spree Rails application, using RVM, optionally with MySQL database, unicorn and NGINX proxy.  
+
+Missing: Tests, SSL, Ubuntu platforms .
+
+Requirements
+===========
+
+Cookbooks
+---------
+* nginx
+* rvm
+* unicorn
+* database
+* mysql
+* mysql_chef_gem
 
 ## Supported Platforms
 
-Supported platforms: RHEL
+RHEL is the only platform currently supported.
 
 ## Default attributes
-
 <table>
   <tr>
     <th>Key</th>
@@ -20,14 +36,14 @@ Supported platforms: RHEL
   <tr>
     <td><tt>['spree']['domain']</tt></td>
     <td>String</td>
-    <td>Your brand domain</td>
-    <td><tt>mybrand.com</tt></td>
+    <td>Your domain</td>
+    <td><tt>domain.com</tt></td>
   </tr>
   <tr>
     <td><tt>['spree']['app']</tt></td>
     <td>String</td>
     <td>Name of your Spree Shop</td>
-    <td><tt>spreeshop</tt></td>
+    <td><tt>shop</tt></td>
   </tr>
   <tr>
     <td><tt>['spree']['vm_hostname']</tt></td>
@@ -74,30 +90,11 @@ Supported platforms: RHEL
   </tr>
 </table>
 
-# .kitchen.yml
-```
----
-driver:
-  name: vagrant
-  vm_hostname: spreeshop.mybrand.com
-  driver_config:
-  network:
-  - ["private_network", {ip:'10.0.100.2'}]
-  customize:
-      cpus: 2
-      memory: 4096
-```
-
-Spree app should be available at <b>spreeshop.mybrand.com</b>
-
-Point your DNS or hosts file over: "10.0.100.2 spreeshop.mybrand.com"
-
-
 ## Usage
 
 ### spree::default
 
-Include `spree` in your node's `run_list`:
+Include `spree` cookbook in your node's `run_list`:
 
 ```json
 {
@@ -108,4 +105,6 @@ Include `spree` in your node's `run_list`:
 ```
 ## License and Authors
 
-Author:: Alex Naumchenko (<alex@devloft.com>) @ Devloft Solutions Inc.
+ - Author:: Alex Naumchenko (<alex@devloft.com>)
+
+Copyright (C) Devloft Solutions, Inc.
