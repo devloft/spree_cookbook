@@ -1,7 +1,7 @@
 # spree-cookbook
 
 [![Dependency Status](https://gemnasium.com/devloft/spree.svg)](https://gemnasium.com/devloft/spree)
-
+[![Build Status](https://travis-ci.org/devloft/spree.svg?branch=master)](https://travis-ci.org/devloft/spree)
 
 Description
 ===========
