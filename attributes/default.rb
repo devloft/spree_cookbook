@@ -11,7 +11,7 @@ default['unicorn']['options'] = { :tcp_nodelay => true, :backlog => 100 }
 default['spree']['https_only'] = false
 default['spree']['ssl'] = false
 
-default['spree']['domain'] = "montrealdrones.com"
+default['spree']['domain'] = ""
 default['spree']['app'] = "store"
 
 default['spree']['root_path'] = "/opt/spree"
