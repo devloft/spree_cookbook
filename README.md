@@ -5,9 +5,9 @@
 
 Description
 ===========
-Spree cookbook installs and configures Spree Rails application, using RVM, optionally with MySQL database, unicorn and NGINX proxy.  
+A [Chef](http://getchef.com/) cookbook that builds and manages Spree Commerce, using RVM, optionally with database, Unicorn and NGINX proxy.
 
-Missing: Tests, SSL, Ubuntu platforms .
+Missing: Test Kitchen and ServerSpec, SSL for NGINX, Ubuntu platforms
 
 Requirements
 ===========
