@@ -1,20 +1,18 @@
 ---
 driver:
   name: vagrant
-  vm_hostname: spreeshop.mybrand.com
+  vm_hostname: store.mybrand.com
   driver_config:
   network:
   - ["private_network", {ip: '10.0.100.2'}]
   customize:
       cpus: 2
       memory: 4096
-
 provisioner:
   name: chef_solo
 
 platforms:
   - name: centos-6.4
-
 suites:
   - name: spree_vm
     run_list:

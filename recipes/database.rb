@@ -2,7 +2,7 @@ mysql2_chef_gem 'default' do
   action :install
 end
 
-mysql_service 'db' do
+mysql_service node['spree']['rails_env'] do
   port '3306'
   version '5.5'
   initial_root_password node['spree']['db_pass']
@@ -14,14 +14,14 @@ mysql_database node['spree']['db_name'] do
     :socket  =>  node['spree']['db_socket'],
     :username => node['spree']['db_user'],
     :password => node['spree']['db_pass']
-  )
-  provider   Chef::Provider::Database::Mysql
+    )
+  provider Chef::Provider::Database::Mysql
   action :create
 end
 
 template "#{node['spree']['app_path']}/config/database.yml" do
-  user        node['spree']['user']
-  group       node['spree']['group']
+  user  node['spree']['user']
+  group node['spree']['group']
   source "database.yml.erb"
   mode "0600"
 end

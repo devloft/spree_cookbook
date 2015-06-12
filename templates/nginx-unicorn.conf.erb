@@ -11,11 +11,13 @@ server {
   listen 80 default deferred;
   server_name <%= node['spree']['app'] %>.<%= node['spree']['domain'] %>;
   root <%= node['spree']['root_path'] %>/<%= node['spree']['app'] %>/public;
-  location ^~ /assets/ {
-    gzip_static on;
-    expires max;
-    add_header Cache-Control public;
-  }
+
+
+#  location ^~ /assets/ {
+#    gzip_static on;
+#    expires max;
+#    add_header Cache-Control public;
+#  }
 
   try_files $uri/index.html $uri @unicorn;
   location @unicorn {

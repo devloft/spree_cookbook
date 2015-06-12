@@ -1,15 +1,20 @@
-#Here we'll create fresh rails app with Gemfile and add spree modules.
 include_recipe "rvm::system"
+
+directory node['spree']['root_path'] do
+  action :create
+  owner node['spree']['user']
+  group node['spree']['group']
+end
 
 package %w(nodejs mysql-devel ImageMagick)  do
   action :install
 end
 
-rvm_ruby node['rvm']['user_rubies'] do
+rvm_ruby node['rvm']['ruby_ver'] do
   action :install
 end
 
-rvm_default_ruby node['rvm']['user_rubies']
+rvm_default_ruby node['rvm']['ruby_ver']
 
 rvm_shell "install rails" do
   code %Q{gem install rails --no-rdoc --no-ri -v 4.2.1}
@@ -21,7 +26,7 @@ rvm_gem "spree_cmd" do
    action :install
 end
 
-rvm_shell "Creating new Rails App, rails_url is empty!" do
+rvm_shell "New Spree App!" do
   code %Q{rails _4.2.1_ new #{node['spree']['app']} --skip-bundle -d #{node['spree']['db_type']}}
   timeout 36000
   cwd node['spree']['root_path']
@@ -30,20 +35,22 @@ rvm_shell "Creating new Rails App, rails_url is empty!" do
   not_if { ::File.exists?("#{node['spree']['app_path']}/Gemfile") }
 end
 
-rvm_shell "Adding Spree to Gemfile" do
-  code 'spree install --A --skip-install-data'
-  timeout 36000
-  cwd "#{node['spree']['app_path']}"
-  action :nothing
+ruby_block "Add Spree to Gemfile" do
+  block do
+    gemfile = Chef::Util::FileEdit.new("#{node['spree']['app_path']}/Gemfile")
+    gemfile.insert_line_if_no_match(/#gem 'spree'/, "gem 'spree', '3.0.1'
+gem 'spree_gateway', github: 'spree/spree_gateway', branch: '3-0-stable'
+gem 'spree_auth_devise', github: 'spree/spree_auth_devise', branch: '3-0-stable'")
+    gemfile.write_file
+  end
 end
 
-rvm_shell "Runing bundle install" do
-  code 'bundle install --path .bundle'
-  timeout 36000
-  cwd "#{node['spree']['app_path']}"
-  user node['spree']['user']
-  group node['spree']['group']
-  not_if 'bundle check'
+ruby_block "Add unicorn to Gemfile" do
+  block do
+    gemfile = Chef::Util::FileEdit.new("#{node['spree']['app_path']}/Gemfile")
+    gemfile.insert_line_if_no_match(/#gem 'unicorn'/,"gem 'unicorn'")
+    gemfile.write_file
+  end
 end
 
 ruby_block "Create devise_key " do

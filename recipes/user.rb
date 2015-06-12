@@ -9,9 +9,3 @@ user node['spree']['user'] do
   system true
   action :create
 end
-
-directory node['spree']['root_path'] do
-  action :create
-  owner node['spree']['user']
-  group node['spree']['group']
-end
