@@ -83,7 +83,7 @@ RHEL is the only platform currently supported.
     <td><tt>spree</tt></td>
   </tr>
   <tr>
-    <td><tt>['spree']['rails_env']</tt></td>
+    <td><tt>['spree']['environment']</tt></td>
     <td>String</td>
     <td>Rails environment:</td>
     <td><tt>development</tt></td>

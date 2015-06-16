@@ -1,0 +1,12 @@
+# Chef-managed
+<% if node['spree']['unicorn'] -%>
+  gem 'unicorn'
+<% end -%>
+<% if node['spree']['core'] -%>
+  gem 'spree', '<%= node['spree']['version'] %>'
+  gem 'spree_gateway', github: 'spree/spree_gateway', branch: '<%= node['spree']['branch'] %>'
+  gem 'spree_auth_devise', github: 'spree/spree_auth_devise', branch: '<%= node['spree']['branch'] %>'
+<% end -%>
+<% if node['spree']['extensions'] -%>
+  gem 'spree_wombat', git: 'git@github.com:spree/spree_wombat.git', branch: 'master'
+<% end -%>

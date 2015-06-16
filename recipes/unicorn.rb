@@ -14,7 +14,7 @@ bash 'Running Unicorn' do
   group node['spree']['group']
   cwd node['spree']['app_path']
   code <<-EOH
-    unicorn_rails -E #{node['spree']['rails_env']} -D
+    unicorn_rails -E #{node['spree']['environment']} -D
   EOH
-  not_if 'ps aux  | grep unicorn_rails', :user => node['spree']['user']
+  not_if 'ps aux | grep unicorn_rails', :user => 'spree'
 end

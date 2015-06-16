@@ -2,7 +2,9 @@ mysql2_chef_gem 'default' do
   action :install
 end
 
-mysql_service node['spree']['rails_env'] do
+include_recipe 'selinux::disabled' if node['platform_family'] == 'rhel'
+
+mysql_service node['spree']['db_name'] do
   port '3306'
   version '5.5'
   initial_root_password node['spree']['db_pass']
@@ -13,8 +15,7 @@ mysql_database node['spree']['db_name'] do
   connection(
     :socket  =>  node['spree']['db_socket'],
     :username => node['spree']['db_user'],
-    :password => node['spree']['db_pass']
-    )
+    :password => node['spree']['db_pass'])
   provider Chef::Provider::Database::Mysql
   action :create
 end
