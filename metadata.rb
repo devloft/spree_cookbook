@@ -4,7 +4,7 @@ maintainer_email 'alex@devloft.com'
 license          'All rights reserved'
 description      'Installs/Configures Spree'
 long_description 'Installs/Configures Spree'
-version          '0.1.6'
+version          '0.2.7'
 
 depends "nginx"
 depends "rvm"

@@ -1,13 +1,8 @@
 ---
 driver:
   name: vagrant
-  vm_hostname: store.mybrand.com
   driver_config:
-  network:
-  - ["private_network", {ip: '10.0.100.2'}]
-  customize:
-      cpus: 2
-      memory: 4096
+
 provisioner:
   name: chef_solo
 
@@ -18,5 +13,3 @@ suites:
     run_list:
      - recipe[spree::default]
     attributes:
-      resolvconf:
-      nameserver: '8.8.8.8'
