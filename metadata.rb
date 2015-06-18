@@ -4,7 +4,9 @@ maintainer_email 'info@devloft.com'
 license          'Apache 2.0'
 description      'Installs and configures Spree'
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.2.7'
+version          '0.2.8'
+
+supports "redhat"
 
 depends "nginx"
 depends "rvm"

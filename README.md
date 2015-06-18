@@ -1,4 +1,4 @@
-# spree Cookbook
+# Spree Cookbook
 
 [![Dependency Status](https://gemnasium.com/devloft/spree.svg)](https://gemnasium.com/devloft/spree)
 
@@ -57,6 +57,5 @@ Or just app node:
 ```
 ## License and Authors
 
- - Author:: Alex Naumchenko (<alex@devloft.com>)
-
+Author:: Alex Naumchenko (<alex@devloft.com>)
 Copyright (C) Devloft Solutions, Inc.
