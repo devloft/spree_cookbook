@@ -46,31 +46,6 @@ rvm_shell "New Spree App!" do
   not_if { ::File.exists?("#{node['spree']['app_path']}/Gemfile") }
 end
 
-ruby_block "Create devise_key " do
-    block do
-        Chef::Resource::RubyBlock.send(:include, Chef::Mixin::ShellOut)
-        app_path = node['spree']['app_path']
-        command = "cd #{app_path} && bundle exec rake secret"
-        command_out = shell_out(command)
-        node.set['devise_key'] = command_out.stdout
-    end
-    action :create
-end
-
-template "#{node['spree']['app_path']}/config/initializers/devise.rb" do
-  source "devise.erb"
-  mode '0600'
-  user node['spree']['user']
-  group node['spree']['group']
-end
-
-template "#{node['spree']['app_path']}/config/secrets.yml" do
-  source "secrets.yml.erb"
-  mode '0600'
-  user node['spree']['user']
-  group node['spree']['group']
-end
-
 template "/tmp/Gemfile.tmp" do
   source "gemfile.erb"
   user node['spree']['user']

@@ -20,10 +20,11 @@ default['spree']['environment'] = "production"
 default['spree']['root_path'] = "/opt/spree/releases"
 default['spree']['app_path'] = "#{node['spree']['root_path']}/#{node['spree']['app']}"
 # Rails actions
-default['spree']['migrate'] = true
-default['spree']['seed'] = true
-default['spree']['sample'] = true
 default['spree']['precompile'] = true
+default['spree']['migrate'] = true
+default['spree']['seed'] = false
+default['spree']['sample'] = false
+default['spree']['unicorn_rails'] = true
 # Unicorn settings
 default['unicorn']['worker_timeout'] = 60
 default['unicorn']['preload_app'] = false
