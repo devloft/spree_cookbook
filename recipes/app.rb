@@ -46,23 +46,6 @@ rvm_shell "New Spree App!" do
   not_if { ::File.exists?("#{node['spree']['app_path']}/Gemfile") }
 end
 
-template "#{node['spree']['app_path']}/config/database.yml" do
-  user  node['spree']['user']
-  group node['spree']['group']
-  source "database.yml.erb"
-  mode "0600"
-end
-
-mysql_database node['spree']['db_name'] do
-  connection(
-    :socket  =>  node['spree']['db_socket'],
-    :username => node['spree']['db_user'],
-    :password => node['spree']['db_pass'])
-  provider Chef::Provider::Database::Mysql
-  action :create
-end
-
-
 ruby_block "Create devise_key " do
     block do
         Chef::Resource::RubyBlock.send(:include, Chef::Mixin::ShellOut)
@@ -81,8 +64,8 @@ template "#{node['spree']['app_path']}/config/initializers/devise.rb" do
   group node['spree']['group']
 end
 
-template "#{node['spree']['app_path']}/config/secret.yml" do
-  source "secret.yml.erb"
+template "#{node['spree']['app_path']}/config/secrets.yml" do
+  source "secrets.yml.erb"
   mode '0600'
   user node['spree']['user']
   group node['spree']['group']

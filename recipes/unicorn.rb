@@ -9,4 +9,5 @@ unicorn_config "#{node['spree']['app_path']}/config/unicorn.rb" do
   before_fork node['unicorn']['before_fork']
   owner node['spree']['user']
   group node['spree']['group']
+  preload_app true
 end

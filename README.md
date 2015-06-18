@@ -1,10 +1,10 @@
-# spree-cookbook
+# spree Cookbook
 
 [![Dependency Status](https://gemnasium.com/devloft/spree.svg)](https://gemnasium.com/devloft/spree)
 
 Description
 ===========
-A [Chef](http://getchef.com/) cookbook that builds and manages Spree Commerce, using RVM, optionally with database, Unicorn and NGINX proxy.
+A [Chef](http://getchef.com/) Cookbook installs Spree and prepares the RVM environment, optionally with database, Unicorn and NGINX proxy.
 
 Missing: Serverspec tests, SSL for NGINX, Ubuntu platform
 
@@ -44,7 +44,7 @@ Include `spree` cookbook in your node's `run_list`:
 }
 ```
 
-On separate nodes:
+Or just app node:
 
 ```json
 {

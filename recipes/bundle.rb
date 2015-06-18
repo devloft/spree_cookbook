@@ -1,3 +1,4 @@
+
 #Bundle-up your app
 rvm_shell "Runing bundle install" do
   code 'bundle install --path .bundle'
@@ -14,7 +15,7 @@ rvm_shell "Runing Migration" do
   cwd "#{node['spree']['app_path']}"
   user node['spree']['user']
   group node['spree']['group']
-  only_if {node['spree']['migrate']}
+  # only_if { node['spree']['migrate'] }
 end
 
 rvm_shell "Compiling Assets" do
@@ -23,7 +24,7 @@ rvm_shell "Compiling Assets" do
   cwd "#{node['spree']['app_path']}"
   user node['spree']['user']
   group node['spree']['group']
-  only_if {node['spree']['precompile']}
+  # only_if { node['spree']['precompile'] }
 end
 
 rvm_shell "Running Unicorn" do
@@ -32,5 +33,5 @@ rvm_shell "Running Unicorn" do
   cwd "#{node['spree']['app_path']}"
   user node['spree']['user']
   group node['spree']['group']
-  not_if 'ps aux | grep -e unicorn_rails'
+  # not_if 'ps aux | grep -e unicorn_rails'
 end
