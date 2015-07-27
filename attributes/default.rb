@@ -5,6 +5,7 @@ default['spree']['version'] = '3.0.1'
 default['spree']['branch'] = '3-0-stable'
 default['spree']['core'] = true
 default['spree']['extensions'] = false
+default['spree']['extensions_list'] = {}
 # Ruby environment
 default['rvm']['ruby'] = '2.1.5'
 default['rvm']['gpg']['keyserver'] = "hkp://keys.gnupg.net"
