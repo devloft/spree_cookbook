@@ -6,7 +6,7 @@ description      'Installs and configures Spree'
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.2.9'
 
-supports "redhat"
+supports %w(redhat centos)
 
 depends "nginx"
 depends "rvm"
