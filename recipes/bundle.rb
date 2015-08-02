@@ -52,7 +52,7 @@ rvm_shell "Compiling Assets" do
 end
 
 rvm_shell "Running Unicorn" do
-  code "RAILS_ENV=#{node['spree']['environment']} bundle exec unicorn_rails -D -c config/unicorn.rb"
+  code "q"
   timeout 36000
   cwd "#{node['spree']['app_path']}"
   user node['spree']['user']

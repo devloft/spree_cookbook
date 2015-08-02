@@ -59,3 +59,10 @@ execute "Add Spree to Rails app" do
     EOF
   not_if "grep Chef-managed Gemfile"
 end
+
+template "#{node['spree']['app_path']}/config/database.yml" do
+  user  node['spree']['user']
+  group node['spree']['group']
+  source "database.yml.erb"
+  mode "0600"
+end

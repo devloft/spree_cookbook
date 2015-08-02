@@ -2,10 +2,8 @@
 driver:
   name: vagrant
   driver_config:
-
 provisioner:
   name: chef_solo
-
 platforms:
   - name: centos-6.4
 suites:

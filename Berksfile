@@ -1,5 +1,7 @@
 source "https://supermarket.chef.io"
 
+cookbook 'yum-epel', '~> 0.6.2'
+cookbook 'docker', '~> 0.43.0'
 cookbook 'nginx', '~> 2.7.6'
 cookbook 'rvm', github: 'fnichol/chef-rvm'
 cookbook 'unicorn', '~> 2.0.0'

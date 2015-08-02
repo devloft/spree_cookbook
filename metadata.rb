@@ -1,13 +1,14 @@
 name             'spree'
-maintainer       'Devloft Solutions, Inc.'
+maintainer       'Devloft'
 maintainer_email 'info@devloft.com'
 license          'Apache 2.0'
 description      'Installs and configures Spree'
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.2.9'
+version          '0.3.0'
 
-supports "redhat"
+supports %w(redhat centos)
 
+depends "docker"
 depends "nginx"
 depends "rvm"
 depends "mysql"
